@@ -21,15 +21,10 @@ sumsteps<-tapply(activity$steps,activity$date,sum,na.rm=T)
 Histogram of Total Steps Each Day
 
 ```r
-png(file="histtotalsteps")
 hist(sumsteps,xlab="Total Steps",main="Histogram of Total Steps Each Day")
-dev.off()
 ```
 
-```
-## pdf 
-##   2
-```
+![](PA1_template_files/figure-html/histrogram_mean_meadian-1.png) 
 
 ```r
 avg<-mean(sumsteps)
@@ -45,15 +40,10 @@ The median total number of steps taken each day is 10395.
 ##Calculate average number of steps across all days for each interval
 avgsteps<-tapply(activity$steps,activity$interval,mean,na.rm=T)
 ##plot average steps versus interval
-png(file="activity")
 plot(unique(activity$interval),avgsteps,type="l",xlab="Interval",ylab="Average Steps",main="Average Number of Steps vs. Interval")
-dev.off()
 ```
 
-```
-## pdf 
-##   2
-```
+![](PA1_template_files/figure-html/average steps-1.png) 
 
 ```r
 ##Find the index for the maximum average number of steps
@@ -75,15 +65,10 @@ for (i in 1:length(activity$steps)){
 ##Calculate total steps each day
 sumsteps<-tapply(activity$steps,activity$date,sum,na.rm=T)
 ##Histogram of total steps each day
-png(file="newhisttotalsteps")
 hist(sumsteps,xlab="Total Steps",main="Histogram of Total Steps Each Day (Replaced NAs)")
-dev.off()
 ```
 
-```
-## pdf 
-##   2
-```
+![](PA1_template_files/figure-html/replaceNAs-1.png) 
 
 ```r
 ##mean steps each day
@@ -123,15 +108,10 @@ weekpart<-factor(weekpart,labels=c("weekday","weekend"))
 activity<-cbind(activity,weekpart)
 
 ##plot average steps versus interval with a weekend panel and weekday panel
-png(file="activityperweekpart")
 p<-ggplot(activity,aes(x=interval,y=steps))+
         stat_summary(fun.y=mean,geo="line")+
         facet_grid(.~weekpart)
 print(p)
-dev.off()
 ```
 
-```
-## pdf 
-##   2
-```
+![](PA1_template_files/figure-html/weekpart-1.png) 
